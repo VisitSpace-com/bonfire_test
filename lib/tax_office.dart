@@ -8,7 +8,7 @@ class TaxOffice extends StatefulWidget {
   State<TaxOffice> createState() => _TaxOfficeState();
 }
 
-const tilemap = 'tax-office-tile.json';
+const tilemap = 'assets/images/tax-office-tile.json';
 
 class _TaxOfficeState extends State<TaxOffice> {
   @override
