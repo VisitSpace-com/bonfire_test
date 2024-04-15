@@ -7,7 +7,7 @@ void main() {
     const MaterialApp(
       title: 'Yourtory Demo',
       debugShowCheckedModeBanner: false,
-      home: TaxOffice(),
+      home: MyApp(),
     ),
   );
 }
@@ -17,7 +17,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: const Text('Finance RPG')));
-    // body: const TaxOffice());
+    return Scaffold(
+      appBar: AppBar(title: const Text('Finance RPG')),
+      body: const TaxOffice(),
+    );
   }
 }
