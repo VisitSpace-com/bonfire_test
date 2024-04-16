@@ -1,4 +1,5 @@
 import 'package:bonfire/bonfire.dart';
+import 'package:bonfire_test/ninja_player.dart';
 import 'package:flutter/material.dart';
 
 class TaxOffice extends StatefulWidget {
@@ -8,19 +9,17 @@ class TaxOffice extends StatefulWidget {
   State<TaxOffice> createState() => _TaxOfficeState();
 }
 
-const tilemap = 'assets/tiles/tax-office-tile.json';
+const tilemap = 'assets/images/tax-office-tile.json';
 
 class _TaxOfficeState extends State<TaxOffice> {
   @override
   Widget build(BuildContext context) {
     return BonfireWidget(
-      map: WorldMapByTiled(
-        TiledReader.asset(tilemap),
-        forceTileSize: Vector2(32, 32),
-      ),
-      joystick: Joystick(
-        directional: JoystickDirectional(),
-      ),
-    );
+        map: WorldMapByTiled(
+          TiledReader.asset(tilemap),
+          forceTileSize: Vector2(32, 32),
+        ),
+        joystick: Joystick(directional: JoystickDirectional()),
+        player: NinjaPlayer(position: Vector2(40, 40)));
   }
 }

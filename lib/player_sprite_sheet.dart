@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:bonfire/bonfire.dart';
 
-const ninjaIdleRight = 'assets/characters/idle.png';
-const ninjaWalkRight = 'assets/characters/walk.png';
+const ninjaIdleRight = 'assets/images/idle.png';
+const ninjaWalkRight = 'assets/images/walk.png';
 
 class PlayerSpriteSheet {
   static Future<SpriteAnimation> get idleRight => SpriteAnimation.load(
