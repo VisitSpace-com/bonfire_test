@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'tax_office.dart';
+import 'games/green_ninja_game.dart';
+import 'sprite_sheets/green_ninja_sprite_sheet.dart';
 
-void main() {
+void main() async {
+  await GreenNinjaSpriteSheet.load();
+
   runApp(
-    const MaterialApp(
-      title: 'Yourtory Demo',
-      debugShowCheckedModeBanner: false,
-      home: MyApp(),
-    ),
+    const MyApp(),
   );
 }
 
@@ -17,9 +16,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Finance RPG')),
-      body: const TaxOffice(),
+    return const MaterialApp(
+      title: 'Yourtory Demo',
+      home: GreenNinjaGame(),
     );
   }
 }
