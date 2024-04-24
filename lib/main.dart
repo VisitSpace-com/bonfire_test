@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'games/green_ninja_game.dart';
 import 'sprite_sheets/green_ninja_sprite_sheet.dart';
+import 'sprite_sheets/bs_samurai_sprite_sheet.dart';
 
 void main() async {
   await GreenNinjaSpriteSheet.load();
+  await BsSamuraiSpriteSheet.load();
 
   runApp(
     const MyApp(),
@@ -16,9 +18,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Yourtory Demo',
-      home: GreenNinjaGame(),
+      theme: ThemeData(fontFamily: 'Noto Sans JP'),
+      home: const GreenNinjaGame(),
     );
   }
 }

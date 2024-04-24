@@ -24,3 +24,8 @@ dev_dependencies:
 flutter:
   assets:
     - assets/images/
+
+  fonts:
+    - family: Noto Sans JP
+      fonts:
+        - asset: assets/fonts/Noto_Sans_JP/static/NotoSansJP-Regular.ttf
