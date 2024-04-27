@@ -12,6 +12,8 @@ class Globals {
 
   // Distances
   static const double radiusVision = 50;
+  static const int observeMaxDistance = 70;
+  static const int observeMinDistance = 30;
 
   // Sizes
   static const double tileSize = 32;

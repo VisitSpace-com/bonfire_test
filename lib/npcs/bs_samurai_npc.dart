@@ -7,7 +7,8 @@ import '../constants/globals.dart';
 import '../sprite_sheets/green_ninja_sprite_sheet.dart';
 import '../sprite_sheets/bs_samurai_sprite_sheet.dart';
 
-class BsSamuraiNpc extends SimpleNpc with TapGesture {
+class BsSamuraiNpc extends SimpleNpc
+    with TapGesture, Lighting, AutomaticRandomMovement {
   bool _observed = false;
   late TextPaint _textPaint;
 
@@ -16,7 +17,7 @@ class BsSamuraiNpc extends SimpleNpc with TapGesture {
     required SpriteSheet spriteSheet,
   }) : super(
           size: Vector2(Globals.playerSize, Globals.playerSize),
-          speed: 150,
+          speed: 0,
           initDirection: Direction.down,
           animation:
               AnimationConfigs.bsSamuraiAnimation(spriteSheet: spriteSheet),
@@ -25,6 +26,13 @@ class BsSamuraiNpc extends SimpleNpc with TapGesture {
       style: const TextStyle(
         color: Colors.white,
         fontSize: Globals.playerSize / 2,
+      ),
+    );
+    setupLighting(
+      LightingConfig(
+        radius: width * 2,
+        blurBorder: width * 2,
+        color: Colors.yellow.withOpacity(0.1),
       ),
     );
   }
@@ -41,8 +49,8 @@ class BsSamuraiNpc extends SimpleNpc with TapGesture {
     if (_observed) {
       _textPaint.render(
         canvas,
-        'BSサムライ',
-        Vector2(position.x, position.y),
+        'BS Samurai',
+        Vector2(-30, -25),
       );
     }
   }
@@ -52,17 +60,15 @@ class BsSamuraiNpc extends SimpleNpc with TapGesture {
     super.update(dt);
 
     seeAndMoveToPlayer(
-      // closePlayer: (player) {},
       radiusVision: Globals.radiusVision,
       observed: () {
         if (!_observed) {
           _observed = true;
-          // return _observed;
         }
       },
       notObserved: () {
         _observed = false;
-        return false;
+        return _observed;
       },
     );
   }

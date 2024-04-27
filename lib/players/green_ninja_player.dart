@@ -1,9 +1,10 @@
 import 'package:bonfire/bonfire.dart';
+import 'package:flutter/material.dart';
 
 import '../constants/animation_configs.dart';
 import '../constants/globals.dart';
 
-class GreenNinjaPlayer extends SimplePlayer {
+class GreenNinjaPlayer extends SimplePlayer with Lighting {
   GreenNinjaPlayer({
     required super.position,
     required SpriteSheet spriteSheet,
@@ -13,5 +14,13 @@ class GreenNinjaPlayer extends SimplePlayer {
           initDirection: Direction.down,
           animation:
               AnimationConfigs.greenNinjaAnimation(spriteSheet: spriteSheet),
-        );
+        ) {
+    setupLighting(
+      LightingConfig(
+        radius: width * 2,
+        blurBorder: width * 2,
+        color: Colors.yellow.withOpacity(0.1),
+      ),
+    );
+  }
 }

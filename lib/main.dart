@@ -19,8 +19,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Yourtory Demo',
-      theme: ThemeData(fontFamily: 'Noto Sans JP'),
+      theme: ThemeData(fontFamilyFallback: const ['Noto Sans JP']),
       home: const GreenNinjaGame(),
     );
   }

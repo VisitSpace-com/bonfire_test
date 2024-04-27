@@ -24,6 +24,7 @@ dev_dependencies:
 flutter:
   assets:
     - assets/images/
+    # - assets/tiles/
 
   fonts:
     - family: Noto Sans JP

@@ -18,6 +18,7 @@ class _GreenNinjaGameState extends State<GreenNinjaGame> {
   @override
   Widget build(BuildContext context) {
     return BonfireWidget(
+      lightingColorGame: Colors.black.withOpacity(0.3),
       joystick: Joystick(directional: JoystickDirectional()),
       player: GreenNinjaPlayer(
         position: Vector2(100, 200),
