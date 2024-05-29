@@ -1,0 +1,36 @@
+// {
+//     "version": "0.2.0",
+//     "configurations": [
+        
+//         {
+//             "name": "Flutter Debug",
+//             "request": "launch",
+//             "type": "dart",
+//             "program": "lib/main.dart",
+//             "args": [
+//                 "web",
+//                 "--web-renderer",
+//                 "canvaskit"
+//             ]
+//         }
+//     ]
+// }
+
+
+{
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "Flutter Build Web - CanvasKit",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "build",
+                "web",
+                "--web-renderer",
+                "canvaskit"
+            ]
+        }
+    ]
+}

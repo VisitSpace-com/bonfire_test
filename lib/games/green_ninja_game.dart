@@ -1,6 +1,10 @@
 import 'package:bonfire/bonfire.dart';
+// import 'package:bonfire/map/util/world_map_reader.dart';
 import 'package:bonfire_test/npcs/bs_samurai_npc.dart';
 import 'package:flutter/material.dart';
+// import 'package:tiledjsonreader/map/tiled_map.dart';
+
+// import 'assets/images/layer1.json';
 
 import '../constants/globals.dart';
 import '../sprite_sheets/green_ninja_sprite_sheet.dart';
@@ -23,16 +27,18 @@ class _GreenNinjaGameState extends State<GreenNinjaGame> {
       player: GreenNinjaPlayer(
         position: Vector2(100, 200),
         spriteSheet: GreenNinjaSpriteSheet.spriteSheet,
+        velocity: Vector2(150, 150),
       ),
-      map: WorldMapByTiled(TiledReader.asset(Globals.tileMap),
-          forceTileSize: Vector2(
-            Globals.tileSize,
-            Globals.tileSize,
-          ),
-          objectsBuilder: {
+      map:
+          WorldMapByTiled(WorldMapReader.fromAsset('assets/images/layer1.json'),
+              forceTileSize: Vector2(
+                Globals.tileSize,
+                Globals.tileSize,
+              ),
+              objectsBuilder: {
             'bs_samurai': (properties) => BsSamuraiNpc(
                 position: properties.position,
-                spriteSheet: BsSamuraiSpriteSheet.spriteSheet)
+                spriteSheet: BsSamuraiSpriteSheet.spriteSheet),
           }),
     );
   }

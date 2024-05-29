@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 
 import '../constants/animation_configs.dart';
 import '../constants/globals.dart';
+import '../dialogs/balance_sheet_dialog.dart';
 import '../sprite_sheets/green_ninja_sprite_sheet.dart';
 import '../sprite_sheets/bs_samurai_sprite_sheet.dart';
 
@@ -35,6 +36,12 @@ class BsSamuraiNpc extends SimpleNpc
         color: Colors.yellow.withOpacity(0.1),
       ),
     );
+  }
+
+  @override
+  Future<void> onLoad() {
+    add(RectangleHitbox(size: size));
+    return super.onLoad();
   }
 
   @override
@@ -78,18 +85,24 @@ class BsSamuraiNpc extends SimpleNpc
         target: this,
         zoom: 2,
         onComplete: () {
-          TalkDialog.show(gameRef.context, [
-            _speak(
-                text: '会社経営をするとは、貸借対照表を知るということだ。\nお主は持っておるか？', isHero: false),
-            _speak(text: 'はい！貸借対照表あります。', isHero: true),
-            _speak(text: 'お主のBS、ワシが分析して差し上げよう。', isHero: false),
-            _speak(text: 'お願いします！', isHero: true),
-          ], logicalKeyboardKeysToNext: [
-            LogicalKeyboardKey.space,
-            LogicalKeyboardKey.enter,
-          ], onClose: () {
-            gameRef.camera.moveToPlayerAnimated(zoom: 1);
-          });
+          TalkDialog.show(
+            gameRef.context,
+            [
+              _speak(
+                  text: '会社経営をするとは、貸借対照表を知るということだ。\nお主は持っておるか？', isHero: false),
+              _speak(text: 'はい！貸借対照表あります。', isHero: true),
+              _speak(text: 'お主のBS、ワシが分析して差し上げよう。', isHero: false),
+              _speak(text: 'お願いします！', isHero: true),
+            ],
+            logicalKeyboardKeysToNext: [
+              LogicalKeyboardKey.space,
+              LogicalKeyboardKey.enter,
+            ],
+            onClose: () {
+              gameRef.camera.moveToPlayerAnimated(zoom: 1);
+              BalanceSheetDialog.show(gameRef.context);
+            },
+          );
         });
   }
 

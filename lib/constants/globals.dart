@@ -8,7 +8,10 @@ class Globals {
   static const String greenNinjaSpriteSheet = 'green_ninja.png';
   static const String bsSamuraiSpriteSheet = 'bs_samurai.png';
   static const String tileMap = 'assets/images/layer1.json';
-  static const String tileMap2 = 'assets/images/bs_samurai_tileset.json';
+  // static const String tileMap2 = 'assets/images/bs_samurai_tileset.json';
+
+  // Financial Statement
+  static const String bsDialog = 'assets/images/bs_dialog.png';
 
   // Distances
   static const double radiusVision = 50;

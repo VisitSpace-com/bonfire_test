@@ -11,9 +11,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-  cupertino_icons: ^1.0.6
+  
+  # cupertino_icons: ^1.0.6
   bonfire: ^3.7.1
+
+dev dependencies:
+  test: any
+
 
 dev_dependencies:
   flutter_test:
@@ -22,11 +26,13 @@ dev_dependencies:
   flutter_lints: ^3.0.0
 
 flutter:
+
+  uses-material-design: true
+
   assets:
     - assets/images/
-    # - assets/tiles/
 
-  fonts:
-    - family: Noto Sans JP
-      fonts:
-        - asset: assets/fonts/Noto_Sans_JP/static/NotoSansJP-Regular.ttf
+  # fonts:
+  #   - family: Noto Sans JP
+  #     fonts:
+  #       - asset: assets/fonts/Noto_Sans_JP/static/NotoSansJP-Regular.ttf
