@@ -89,7 +89,7 @@ class BalanceSheetDialog extends StatelessWidget {
             const SizedBox(height: 20), // Space
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('保存'),
+              child: const Text('保　存'),
             ),
             const SizedBox(height: 20), // Space
           ],

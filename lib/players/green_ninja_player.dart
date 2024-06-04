@@ -25,7 +25,6 @@ class GreenNinjaPlayer extends SimplePlayer
       ),
     );
   }
-
   @override
   Future<void> onLoad() {
     add(RectangleHitbox(size: size));

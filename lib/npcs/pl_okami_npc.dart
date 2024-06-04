@@ -4,23 +4,23 @@ import 'package:flutter/services.dart';
 
 import '../constants/animation_configs.dart';
 import '../constants/globals.dart';
-import '../dialogs/balance_sheet_dialog.dart';
+import '../dialogs/profit_and_loss_statement_dialog.dart';
 import '../sprite_sheets/green_ninja_sprite_sheet.dart';
-import '../sprite_sheets/bs_samurai_sprite_sheet.dart';
+import '../sprite_sheets/pl_okami_sprite_sheet.dart';
 
-class BsSamuraiNpc extends SimpleNpc with TapGesture, Lighting, RandomMovement {
+class PlOkamiNpc extends SimpleNpc with TapGesture, Lighting, RandomMovement {
   bool _observed = false;
   late TextPaint _textPaint;
 
-  BsSamuraiNpc({
+  PlOkamiNpc({
     required super.position,
     required SpriteSheet spriteSheet,
   }) : super(
           size: Vector2(Globals.playerSize, Globals.playerSize),
-          speed: 0,
-          initDirection: Direction.down,
+          speed: 50,
+          initDirection: Direction.left,
           animation:
-              AnimationConfigs.bsSamuraiAnimation(spriteSheet: spriteSheet),
+              AnimationConfigs.plOkamiAnimation(spriteSheet: spriteSheet),
         ) {
     _textPaint = TextPaint(
       style: const TextStyle(
@@ -55,7 +55,7 @@ class BsSamuraiNpc extends SimpleNpc with TapGesture, Lighting, RandomMovement {
     if (_observed) {
       _textPaint.render(
         canvas,
-        'BS Samurai',
+        'PL Okami',
         Vector2(-30, -25),
       );
     }
@@ -66,6 +66,7 @@ class BsSamuraiNpc extends SimpleNpc with TapGesture, Lighting, RandomMovement {
     super.update(dt);
 
     seeAndMoveToPlayer(
+      closePlayer: (player) {},
       radiusVision: Globals.radiusVision,
       observed: () {
         if (!_observed) {
@@ -74,7 +75,13 @@ class BsSamuraiNpc extends SimpleNpc with TapGesture, Lighting, RandomMovement {
       },
       notObserved: () {
         _observed = false;
-        return _observed;
+        runRandomMovement(
+          dt,
+          // speed: 25,
+          maxDistance: Globals.observeMaxDistance,
+          minDistance: Globals.observeMinDistance,
+        );
+        return false;
       },
     );
   }
@@ -87,11 +94,9 @@ class BsSamuraiNpc extends SimpleNpc with TapGesture, Lighting, RandomMovement {
           TalkDialog.show(
             gameRef.context,
             [
-              _speak(
-                  text: '会社経営とは、自社の貸借対照表を知るということだ。\nお主、BSをしっかり理解しておるか？',
-                  isHero: false),
-              _speak(text: 'あ、はい・・・。大丈夫です。', isHero: true),
-              _speak(text: 'では、拙者がお主のBSを分析して差し上げよう。', isHero: false),
+              _speak(text: '赤字とはすなわち、「死」じゃ。\nお主、損益計算書はどうなっておる？', isHero: false),
+              _speak(text: '死んでは、ないです。。。', isHero: true),
+              _speak(text: 'ほう。なら、私が見てあげよう。\nPLをお出し。', isHero: false),
               _speak(text: 'お、お願いします。', isHero: true),
             ],
             logicalKeyboardKeysToNext: [
@@ -100,7 +105,7 @@ class BsSamuraiNpc extends SimpleNpc with TapGesture, Lighting, RandomMovement {
             ],
             onClose: () {
               gameRef.camera.moveToPlayerAnimated(zoom: 1);
-              BalanceSheetDialog.show(gameRef.context);
+              ProfitAndLossStatementDialog.show(gameRef.context);
             },
           );
         });
@@ -119,7 +124,7 @@ class BsSamuraiNpc extends SimpleNpc with TapGesture, Lighting, RandomMovement {
           width: Globals.dialogBox,
           child: isHero
               ? GreenNinjaSpriteSheet.spriteSheet.getSprite(0, 0).asWidget()
-              : BsSamuraiSpriteSheet.spriteSheet.getSprite(0, 0).asWidget(),
+              : PlOkamiSpriteSheet.spriteSheet.getSprite(0, 0).asWidget(),
         ),
         personSayDirection:
             isHero ? PersonSayDirection.LEFT : PersonSayDirection.RIGHT,

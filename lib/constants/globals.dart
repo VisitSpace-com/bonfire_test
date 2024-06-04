@@ -7,16 +7,17 @@ class Globals {
   // Players
   static const String greenNinjaSpriteSheet = 'green_ninja.png';
   static const String bsSamuraiSpriteSheet = 'bs_samurai.png';
-  static const String tileMap = 'assets/images/layer1.json';
-  // static const String tileMap2 = 'assets/images/bs_samurai_tileset.json';
+  static const String plOkamiSpriteSheet = 'pl_okami.png';
+  static const String map = 'map.json';
 
   // Financial Statement
   static const String bsDialog = 'assets/images/bs_dialog.png';
+  static const String plDialog = 'assets/images/pl_dialog.png';
 
   // Distances
-  static const double radiusVision = 50;
-  static const int observeMaxDistance = 70;
-  static const int observeMinDistance = 30;
+  static const double observeMaxDistance = 70;
+  static const double observeMinDistance = 30;
+  static const double radiusVision = 130;
 
   // Sizes
   static const double tileSize = 32;

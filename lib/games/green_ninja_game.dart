@@ -1,14 +1,12 @@
 import 'package:bonfire/bonfire.dart';
-// import 'package:bonfire/map/util/world_map_reader.dart';
 import 'package:bonfire_test/npcs/bs_samurai_npc.dart';
+import 'package:bonfire_test/npcs/pl_okami_npc.dart';
 import 'package:flutter/material.dart';
-// import 'package:tiledjsonreader/map/tiled_map.dart';
-
-// import 'assets/images/layer1.json';
 
 import '../constants/globals.dart';
 import '../sprite_sheets/green_ninja_sprite_sheet.dart';
 import '../sprite_sheets/bs_samurai_sprite_sheet.dart';
+import '../sprite_sheets/pl_okami_sprite_sheet.dart';
 import '../players/green_ninja_player.dart';
 
 class GreenNinjaGame extends StatefulWidget {
@@ -23,23 +21,31 @@ class _GreenNinjaGameState extends State<GreenNinjaGame> {
   Widget build(BuildContext context) {
     return BonfireWidget(
       lightingColorGame: Colors.black.withOpacity(0.3),
-      joystick: Joystick(directional: JoystickDirectional()),
       player: GreenNinjaPlayer(
-        position: Vector2(100, 200),
+        position: Vector2(10, 20),
         spriteSheet: GreenNinjaSpriteSheet.spriteSheet,
         velocity: Vector2(150, 150),
       ),
-      map:
-          WorldMapByTiled(WorldMapReader.fromAsset('assets/images/layer1.json'),
-              forceTileSize: Vector2(
-                Globals.tileSize,
-                Globals.tileSize,
-              ),
-              objectsBuilder: {
-            'bs_samurai': (properties) => BsSamuraiNpc(
-                position: properties.position,
-                spriteSheet: BsSamuraiSpriteSheet.spriteSheet),
-          }),
+      playerControllers: [
+        Joystick(
+          directional: JoystickDirectional(),
+        ),
+      ],
+      map: WorldMapByTiled(
+        WorldMapReader.fromAsset(Globals.map),
+        forceTileSize: Vector2(
+          Globals.tileSize,
+          Globals.tileSize,
+        ),
+        objectsBuilder: {
+          'bs_samurai': (properties) => BsSamuraiNpc(
+              position: Vector2(300, 300),
+              spriteSheet: BsSamuraiSpriteSheet.spriteSheet),
+          'pl_okami': (properties) => PlOkamiNpc(
+              position: Vector2(600, 600),
+              spriteSheet: PlOkamiSpriteSheet.spriteSheet),
+        },
+      ),
     );
   }
 }
