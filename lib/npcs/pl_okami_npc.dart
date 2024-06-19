@@ -20,7 +20,7 @@ class PlOkamiNpc extends SimpleNpc with TapGesture, Lighting, RandomMovement {
           speed: 50,
           initDirection: Direction.left,
           animation:
-              AnimationConfigs.plOkamiAnimation(spriteSheet: spriteSheet),
+              AnimationConfigs.playersAnimation(spriteSheet: spriteSheet),
         ) {
     _textPaint = TextPaint(
       style: const TextStyle(
@@ -77,7 +77,7 @@ class PlOkamiNpc extends SimpleNpc with TapGesture, Lighting, RandomMovement {
         _observed = false;
         runRandomMovement(
           dt,
-          // speed: 25,
+          speed: 15,
           maxDistance: Globals.observeMaxDistance,
           minDistance: Globals.observeMinDistance,
         );
@@ -87,28 +87,31 @@ class PlOkamiNpc extends SimpleNpc with TapGesture, Lighting, RandomMovement {
   }
 
   void _showDialogTalk() {
-    gameRef.camera.moveToTargetAnimated(
-        target: this,
-        zoom: 2,
-        onComplete: () {
-          TalkDialog.show(
-            gameRef.context,
-            [
-              _speak(text: '赤字とはすなわち、「死」じゃ。\nお主、損益計算書はどうなっておる？', isHero: false),
-              _speak(text: '死んでは、ないです。。。', isHero: true),
-              _speak(text: 'ほう。なら、私が見てあげよう。\nPLをお出し。', isHero: false),
-              _speak(text: 'お、お願いします。', isHero: true),
-            ],
-            logicalKeyboardKeysToNext: [
-              LogicalKeyboardKey.space,
-              LogicalKeyboardKey.enter,
-            ],
-            onClose: () {
-              gameRef.camera.moveToPlayerAnimated(zoom: 1);
-              ProfitAndLossStatementDialog.show(gameRef.context);
-            },
-          );
-        });
+    if (_observed) {
+      gameRef.camera.moveToTargetAnimated(
+          target: this,
+          zoom: 2,
+          onComplete: () {
+            TalkDialog.show(
+              gameRef.context,
+              [
+                _speak(
+                    text: '赤字とはすなわち、「死」じゃ。\nお主、損益計算書はどうなっておる？', isHero: false),
+                _speak(text: '死んでは、ないです。。。', isHero: true),
+                _speak(text: 'ほう。なら、私が見てあげよう。\nPLをお出し。', isHero: false),
+                _speak(text: 'お、お願いします。', isHero: true),
+              ],
+              logicalKeyboardKeysToNext: [
+                LogicalKeyboardKey.space,
+                LogicalKeyboardKey.enter,
+              ],
+              onClose: () {
+                gameRef.camera.moveToPlayerAnimated(zoom: 1);
+                ProfitAndLossStatementDialog.show(gameRef.context);
+              },
+            );
+          });
+    }
   }
 
   Say _speak({

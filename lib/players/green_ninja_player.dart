@@ -12,10 +12,10 @@ class GreenNinjaPlayer extends SimplePlayer
     required Vector2 velocity,
   }) : super(
           size: Vector2(Globals.playerSize, Globals.playerSize),
-          speed: 150,
+          speed: 120,
           initDirection: Direction.down,
           animation:
-              AnimationConfigs.greenNinjaAnimation(spriteSheet: spriteSheet),
+              AnimationConfigs.playersAnimation(spriteSheet: spriteSheet),
         ) {
     setupLighting(
       LightingConfig(

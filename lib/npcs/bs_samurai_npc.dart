@@ -8,7 +8,7 @@ import '../dialogs/balance_sheet_dialog.dart';
 import '../sprite_sheets/green_ninja_sprite_sheet.dart';
 import '../sprite_sheets/bs_samurai_sprite_sheet.dart';
 
-class BsSamuraiNpc extends SimpleNpc with TapGesture, Lighting, RandomMovement {
+class BsSamuraiNpc extends SimpleNpc with TapGesture, Lighting {
   bool _observed = false;
   late TextPaint _textPaint;
 
@@ -20,7 +20,7 @@ class BsSamuraiNpc extends SimpleNpc with TapGesture, Lighting, RandomMovement {
           speed: 0,
           initDirection: Direction.down,
           animation:
-              AnimationConfigs.bsSamuraiAnimation(spriteSheet: spriteSheet),
+              AnimationConfigs.playersAnimation(spriteSheet: spriteSheet),
         ) {
     _textPaint = TextPaint(
       style: const TextStyle(
@@ -58,6 +58,7 @@ class BsSamuraiNpc extends SimpleNpc with TapGesture, Lighting, RandomMovement {
         'BS Samurai',
         Vector2(-30, -25),
       );
+      // print('collided by BS Samurai');
     }
   }
 
@@ -80,30 +81,32 @@ class BsSamuraiNpc extends SimpleNpc with TapGesture, Lighting, RandomMovement {
   }
 
   void _showDialogTalk() {
-    gameRef.camera.moveToTargetAnimated(
-        target: this,
-        zoom: 2,
-        onComplete: () {
-          TalkDialog.show(
-            gameRef.context,
-            [
-              _speak(
-                  text: '会社経営とは、自社の貸借対照表を知るということだ。\nお主、BSをしっかり理解しておるか？',
-                  isHero: false),
-              _speak(text: 'あ、はい・・・。大丈夫です。', isHero: true),
-              _speak(text: 'では、拙者がお主のBSを分析して差し上げよう。', isHero: false),
-              _speak(text: 'お、お願いします。', isHero: true),
-            ],
-            logicalKeyboardKeysToNext: [
-              LogicalKeyboardKey.space,
-              LogicalKeyboardKey.enter,
-            ],
-            onClose: () {
-              gameRef.camera.moveToPlayerAnimated(zoom: 1);
-              BalanceSheetDialog.show(gameRef.context);
-            },
-          );
-        });
+    if (_observed) {
+      gameRef.camera.moveToTargetAnimated(
+          target: this,
+          zoom: 2,
+          onComplete: () {
+            TalkDialog.show(
+              gameRef.context,
+              [
+                _speak(
+                    text: '会社経営とは、自社の貸借対照表を知るということだ。\nお主、BSをしっかり理解しておるか？',
+                    isHero: false),
+                _speak(text: 'あ、はい・・・。大丈夫です。', isHero: true),
+                _speak(text: 'では、拙者がお主のBSを分析して差し上げよう。', isHero: false),
+                _speak(text: 'お、お願いします。', isHero: true),
+              ],
+              logicalKeyboardKeysToNext: [
+                LogicalKeyboardKey.space,
+                LogicalKeyboardKey.enter,
+              ],
+              onClose: () {
+                gameRef.camera.moveToPlayerAnimated(zoom: 1);
+                BalanceSheetDialog.show(gameRef.context);
+              },
+            );
+          });
+    }
   }
 
   Say _speak({

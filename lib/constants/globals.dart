@@ -4,6 +4,9 @@ class Globals {
   // Time limits
   static const double spriteStepTime = 0.1;
 
+  // Decorations
+  static const String wall = 'wall.png';
+
   // Players
   static const String greenNinjaSpriteSheet = 'green_ninja.png';
   static const String bsSamuraiSpriteSheet = 'bs_samurai.png';

@@ -4,10 +4,11 @@ import 'package:bonfire_test/npcs/pl_okami_npc.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/globals.dart';
+import '../players/green_ninja_player.dart';
 import '../sprite_sheets/green_ninja_sprite_sheet.dart';
 import '../sprite_sheets/bs_samurai_sprite_sheet.dart';
 import '../sprite_sheets/pl_okami_sprite_sheet.dart';
-import '../players/green_ninja_player.dart';
+// import '../walls/wall.dart';
 
 class GreenNinjaGame extends StatefulWidget {
   const GreenNinjaGame({super.key});
@@ -44,6 +45,10 @@ class _GreenNinjaGameState extends State<GreenNinjaGame> {
           'pl_okami': (properties) => PlOkamiNpc(
               position: Vector2(600, 600),
               spriteSheet: PlOkamiSpriteSheet.spriteSheet),
+          // 'wall': (properties) => Wall(
+          //       position: Vector2(10, 10),
+          //       wall: const Image(image: AssetImage(Globals.wall)),
+          //     ),
         },
       ),
     );

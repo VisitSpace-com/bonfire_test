@@ -1,0 +1,14 @@
+{ "columns":3,
+ "image":"\u958b\u767a\/darkness_dungeon\/assets\/images\/tiled\/tile_set.png",
+ "imageheight":112,
+ "imagewidth":112,
+ "margin":0,
+ "name":"dungeon_tileset_2",
+ "spacing":0,
+ "tilecount":9,
+ "tiledversion":"1.10.2",
+ "tileheight":32,
+ "tilewidth":32,
+ "type":"tileset",
+ "version":"1.10"
+}
